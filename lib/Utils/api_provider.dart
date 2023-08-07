@@ -8,19 +8,22 @@ import 'package:http/http.dart' as httpObj;
 class ApiProvider {
   static Future<List<Post>> getPosts() async {
     dynamic posts;
-
+    print("start");
     try {
       String apiUrl = "https://jsonplaceholder.typicode.com/posts";
       final response =
           await httpObj.get(Uri.parse(Uri.encodeFull(apiUrl)), headers: {
         'content-type': 'application/json',
       });
+      print(response);
 
       posts = extractResponse(response);
+      print(posts);
     } on SocketException catch (e) {
       print("Error in calling API : " + e.message);
     }
 
+    print("end");
     return posts;
   }
 
